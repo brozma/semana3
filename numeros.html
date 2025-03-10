@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Números Decimales</title>
+  <style>
+    /* Estilos CSS */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .resultados {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .resultados p {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .resultados button {
+      margin-left: 10px;
+      background-color: #28a745;
+    }
+
+    .resultados button:hover {
+      background-color: #218838;
+    }
+
+    .info {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .info h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .info p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      input, button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Conversor de Números Decimales</h1>
+    <p>Ingrese un número decimal para convertirlo a binario, octal y hexadecimal.</p>
+    <input type="text" id="decimalInput" placeholder="Ej: 255" aria-label="Ingrese un número decimal">
+    <button onclick="convertir()">Convertir</button>
+    <div class="resultados">
+      <p>Binario: <span id="binario"></span> <button onclick="copiar('binario')">Copiar</button></p>
+      <p>Octal: <span id="octal"></span> <button onclick="copiar('octal')">Copiar</button></p>
+      <p>Hexadecimal: <span id="hexadecimal"></span> <button onclick="copiar('hexadecimal')">Copiar</button></p>
+    </div>
+    <div class="info">
+      <h2>Información</h2>
+      <p><strong>Binario:</strong> Sistema de base 2, utiliza 0 y 1.</p>
+      <p><strong>Octal:</strong> Sistema de base 8, utiliza dígitos del 0 al 7.</p>
+      <p><strong>Hexadecimal:</strong> Sistema de base 16, utiliza dígitos del 0 al 9 y letras de A a F.</p>
+    </div>
+  </div>
+
+  <script>
+    // Funcionalidad JavaScript
+    function convertir() {
+      const decimal = document.getElementById('decimalInput').value.trim();
+      const binario = document.getElementById('binario');
+      const octal = document.getElementById('octal');
+      const hexadecimal = document.getElementById('hexadecimal');
+
+      if (!decimal || isNaN(decimal)) {
+        alert("Por favor, ingrese un número válido.");
+        return;
+      }
+
+      const num = parseFloat(decimal);
+
+      binario.textContent = num.toString(2);
+      octal.textContent = num.toString(8);
+      hexadecimal.textContent = num.toString(16).toUpperCase();
+    }
+
+    function copiar(id) {
+      const texto = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(texto)
+        .then(() => alert(`Copiado: ${texto}`))
+        .catch(() => alert("Error al copiar"));
+    }
+  </script>
+</body>
+</html>
